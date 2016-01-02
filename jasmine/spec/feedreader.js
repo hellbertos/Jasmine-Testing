@@ -31,6 +31,16 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+         it('has a url', function() {
+            /* Loop through the array allFeeds and test that the url
+             * property is defined and matches the 'http://' string to
+             * determine it is a url
+             */
+            for(var i = 0, len = allFeeds.length; i < len; i++ ) {
+                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].url).toMatch("http://");
+            }
+         });
 
 
         /* TODO: Write a test that loops through each feed
