@@ -82,7 +82,7 @@ $(function() {
           it('toggles on and off screen when icon clicked', function() {
             /* Since isHidden is true in the test above, triggering the first click
              * should return false indicating its now visible while a second trigger
-             * evetn should return a true value indicating the menu is again hidden.
+             * event should return a true value indicating the menu is again hidden.
              */
             // Trigger click event on anchor tag
             $('.menu-icon-link').trigger('click');
@@ -101,7 +101,7 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
-
+    describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -109,10 +109,30 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+         /* Load the data for the page before testing it; setting callback to
+          * the Jasmine done() function
+          */
+        beforeEach(function(done) {
+            loadFeed(0, done );
+        });
+
+        it('should have at least one entry listed', function(done) {
+         /* After the API data loads, check to see that there is some text
+          * within the h2 element
+          */
+            var entry = $('.entry > h2').text().length;
+            expect(entry).toBeGreaterThan(0);
+            done();
+        });
+
+    });// END describe 'Inital Entries'
+
+    /* TODO: Write a new test suite named "New Feed Selection" */
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+
 }());
