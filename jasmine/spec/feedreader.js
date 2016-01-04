@@ -61,6 +61,13 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
+        // Declare var to hold element which contains visiblity class
+        var isHidden;
+
+        // Get the boolean of visibility class
+        beforeEach(function() {
+            isHidden = $('body').hasClass('menu-hidden');
+        });
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -71,7 +78,6 @@ $(function() {
             /* Select body element and determine that the menu-hidden
              * class is applied to it
              */
-            var isHidden = $('body').hasClass('menu-hidden');
             expect(isHidden).toBe(true);
          });
 
@@ -80,6 +86,24 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+          it('toggles on and off screen when icon clicked', function() {
+            /* Since is hidden is true, triggering the first click should
+             * return false against is hidden while a second trigger should
+             * return a boolean true value indicating the menu is again hidden
+             */
+            // Trigger click event on anchor tag
+            $('.menu-icon-link').trigger('click');
+
+            // Determine if body element still has menu-hidden class applied then test
+            var bodyClass1 = $('body').hasClass('menu-hidden');
+            expect( bodyClass1 ).not.toBe(true);
+
+            // Trigger click again, then recheck for applied class
+            $('.menu-icon-link').trigger('click');
+            var bodyClass2 = $('body').hasClass('menu-hidden');
+            expect( bodyClass2 ).toBe(true);
+
+          });
 
     });
 
