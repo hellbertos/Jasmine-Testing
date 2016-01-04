@@ -87,9 +87,9 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
           it('toggles on and off screen when icon clicked', function() {
-            /* Since is hidden is true, triggering the first click should
-             * return false against is hidden while a second trigger should
-             * return a boolean true value indicating the menu is again hidden
+            /* Since isHidden is true in the test above, triggering the first click
+             * should return false indicating its now visible while a second trigger
+             * evetn should return a true value indicating the menu is again hidden.
              */
             // Trigger click event on anchor tag
             $('.menu-icon-link').trigger('click');
