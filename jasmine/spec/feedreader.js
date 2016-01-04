@@ -26,7 +26,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
@@ -42,7 +41,6 @@ $(function() {
             }
          });
 
-
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
@@ -57,7 +55,6 @@ $(function() {
             }
          });
     });
-
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
@@ -128,11 +125,37 @@ $(function() {
     });// END describe 'Inital Entries'
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-
+    describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
 
+        /* Before firing the test, get the link of the current first entry (Jquery
+         * loads selected elements in document order - implemented since Jquery 1.3.2
+         * http://blog.jquery.com/2009/02/20/jquery-1-3-2-released/
+         *
+         * Then load a new feed and get its first entry's href attribute to test
+         * against the previous entry's href attribute.
+         */
+        beforeEach(function(done, currentHref) {
+            // Get the href of the current anchor from prior test's call
+            var currentHref = $('.entry-link').attr('href');
+
+            loadFeed(1, done );
+        });
+
+        it('has changed its content', function(done, currentHref) {
+         /* Get the href of the newly loaded data and compare it against
+          * the previous value passed in from the beforeEach function
+          */
+            var newHref = $('.entry-link').attr('href');
+
+            expect(newHref).not.toEqual(currentHref);
+            done();
+        });
+
+
+    });//END describe 'New Feed Selection'
 
 }());
