@@ -61,14 +61,6 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
-        // Declare var to hold element which contains visiblity class
-        var isHidden;
-
-        // Get the boolean of visibility class
-        beforeEach(function() {
-            isHidden = $('body').hasClass('menu-hidden');
-        });
-
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -78,6 +70,7 @@ $(function() {
             /* Select body element and determine that the menu-hidden
              * class is applied to it
              */
+            var isHidden = $('body').hasClass('menu-hidden');
             expect(isHidden).toBe(true);
          });
 
