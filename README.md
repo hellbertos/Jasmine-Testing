@@ -7,6 +7,6 @@ To run this code, please download the files or clone the repository to your loca
 
 ###Reading the Results
 Beneath the blue/green bar showing number of specs (tests) and failures, you will see variously indented entries.
-* Text in black denotes a suite (or group) of tests which are likely testing a similar segment of functionality.
-* Indented immediately below the black text is green text explaining what is being tested in a particular test.
-* The fact that the indented test is green indicates that the test has passed.
+* Text in black denotes a suite (or group) of tests which are testing a similar segment of functionality which it describes (i.e. The menu).
+* Indented immediately below the black text is green text explaining what is being tested in a particular test. It is named in such a way as to 'complete' a sentence starting with the suite title.displayed in
+* The fact that the indented test is displayed in green indicates that the test has passed.
