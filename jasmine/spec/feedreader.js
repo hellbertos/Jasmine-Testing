@@ -29,14 +29,14 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('has a url', function() {
+        it('has a url defined for each RSS entry', function() {
             /* Loop through the array allFeeds and test that the url
-             * property is defined and matches the 'http://' string to
-             * determine it is a url
+             * property is defined and does not match to an empty
+             * string
              */
             for (var i = 0, len = allFeeds.length; i < len; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).toMatch("http://");
+                expect(allFeeds[i].url).not.toEqual("");
             }
         });
 
@@ -44,13 +44,13 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-        it('has a name', function() {
+        it('has a name defined for each RSS entry', function() {
             /* Loop through the array allFeeds and test that the name
              * property is defined and not empty
              */
             for (var i = 0, len = allFeeds.length; i < len; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toMatch(null);
+                expect(allFeeds[i].name).not.toEqual("");
             }
         });
     });
@@ -67,7 +67,7 @@ $(function() {
              * class is applied to it
              */
             var isHidden = $('body').hasClass('menu-hidden');
-            expect(isHidden).toBe(true);
+            expect(isHidden).toBeTruthy();
         });
 
         /* TODO: Write a test that ensures the menu changes
@@ -85,12 +85,12 @@ $(function() {
 
             // Determine if body element still has menu-hidden class applied then test
             var bodyClass1 = $('body').hasClass('menu-hidden');
-            expect(bodyClass1).not.toBe(true);
+            expect(bodyClass1).toBeFalsy();
 
             // Trigger click again, then recheck for applied class
             $('.menu-icon-link').trigger('click');
             var bodyClass2 = $('body').hasClass('menu-hidden');
-            expect(bodyClass2).toBe(true);
+            expect(bodyClass2).toBeTruthy();
 
         });
 
