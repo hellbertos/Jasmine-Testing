@@ -31,7 +31,7 @@ $(function() {
          */
         it('has a url defined for each RSS entry', function() {
             /* Loop through the array allFeeds and test that the url
-             * property is defined and does not match to an empty
+             * property is defined and does not equal an empty
              * string
              */
             for (var i = 0, len = allFeeds.length; i < len; i++) {
