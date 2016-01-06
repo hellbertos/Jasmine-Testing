@@ -116,7 +116,7 @@ $(function() {
             /* After the API data loads, check to see that there is some text
              * within the h2 element
              */
-            var entry = $('.entry > h2').text().length;
+            var entry = $('.feed .entry').length;
             expect(entry).toBeGreaterThan(0);
             done();
         });
