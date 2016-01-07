@@ -137,21 +137,29 @@ $(function() {
          * Then load a new feed and get its first entry's  href attribute to test
          * against the previous entry's href attribute.
          */
-        beforeEach(function(done, currentHref) {
-            // Get the href of the current anchor from prior test's call
-            var currentHref = $('.entry-link').attr('href');
+        // Instantiate variables in 'describe' scope to hold
+        var firstFeed,
+            secondFeed;
 
-            loadFeed(1, done);
+        beforeEach(function(done) {
+            // Get the href of the current anchor from prior test's call
+            loadFeed(1, function(){
+                secondFeed = $('.feed').text();
+                console.log("I'm feed two: \n"+secondFeed);
+            });
+
+            done();
         });
 
-        it('has changed its content', function(done, currentHref) {
+        it('has changed its content', function(done) {
             /* Get the href of the newly loaded data and compare it against
              * the previous value passed in from the beforeEach function
              */
-            var newHref = $('.entry-link').attr('href');
-
-            expect(newHref).not.toEqual(currentHref);
-            done();
+            loadFeed(0, done);
+            firstFeed = $('.feed').text();
+            console.info("I'm feed ONE: \n"+firstFeed);
+            expect(firstFeed).not.toEqual(secondFeed);
+            //done();
         });
 
 
