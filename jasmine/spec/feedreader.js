@@ -130,36 +130,37 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-        /* Before firing the test, get the link of the current first entry (Jquery
-         * loads selected elements in document order - implemented since Jquery 1.3.2
-         * http://blog.jquery.com/2009/02/20/jquery-1-3-2-released/
-         *
-         * Then load a new feed and get its first entry's  href attribute to test
-         * against the previous entry's href attribute.
+        // This test is based on info and example from JohnnyMav from this post
+        // https://discussions.udacity.com/t/new-feed-selection-question/16274/14
+
+        /* Before testing (it/expect), load the second feed and store it's data
+         * in the top-level scoped secondFeed variable. Call done() to signal
+         * "it" that it can call the first feed and test the two feed's data
+         * against each other
          */
+
         // Instantiate variables in 'describe' scope to hold
         var firstFeed,
             secondFeed;
 
         beforeEach(function(done) {
-            // Get the href of the current anchor from prior test's call
+            // Load the second feed and hold it for the test
             loadFeed(1, function(){
                 secondFeed = $('.feed').text();
-                console.log("I'm feed two: \n"+secondFeed);
             });
-
+            // Tell "it" to go ahead and run
             done();
         });
 
         it('has changed its content', function(done) {
-            /* Get the href of the newly loaded data and compare it against
-             * the previous value passed in from the beforeEach function
+            /* load the first feed and set the returned data to the firstFeed
+             * variable for readability
              */
             loadFeed(0, done);
             firstFeed = $('.feed').text();
-            console.info("I'm feed ONE: \n"+firstFeed);
+
+            // test the two feeds agains each other, expecting data to change i.e. be different
             expect(firstFeed).not.toEqual(secondFeed);
-            //done();
         });
 
 
