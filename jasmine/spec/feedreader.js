@@ -103,7 +103,7 @@ $(function() {
         // and also this post responding to my question
         // https://discussions.udacity.com/t/trouble-with-the-new-feed-test-and-quest-for-an-explanation/43283/5
         // as well as this post on stackoverflow.com which I think explains this concept
-        // in a much more digestable way
+        // in a much more digestable way. Thank you to my reviewer(s) for the tips and guidelines.
 
         /* Before testing (it/expect), load the second feed and store it's data
          * in the top-level scoped secondFeed variable. Call done() to signal
@@ -120,9 +120,9 @@ $(function() {
             // Load the second feed and hold it for the test
             loadFeed(1, function(){
                 secondFeed = $('.feed').text();
+                // Tell "it" to go ahead and run
+                done();
             });
-            // Tell "it" to go ahead and run
-            done();
         });
 
         it('has changed its content', function(done) {
