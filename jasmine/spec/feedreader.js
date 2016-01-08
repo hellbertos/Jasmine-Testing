@@ -98,13 +98,18 @@ $(function() {
     }); // END describe 'Inital Entries'
 
     describe('New Feed Selection', function() {
-        // This test is based on info and example from JohnnyMav from this post
+        // This test is STILL based on info and example from JohnnyMav from this post
         // https://discussions.udacity.com/t/new-feed-selection-question/16274/14
+        // and also this post responding to my question
+        // https://discussions.udacity.com/t/trouble-with-the-new-feed-test-and-quest-for-an-explanation/43283/5
+        // as well as this post on stackoverflow.com which I think explains this concept
+        // in a much more digestable way
 
         /* Before testing (it/expect), load the second feed and store it's data
          * in the top-level scoped secondFeed variable. Call done() to signal
-         * "it" that it can call the first feed and test the two feed's data
-         * against each other
+         * "it" that it can call the first feed then test the two feed's data
+         * against each other from within loadFeeds callback ensuring the data
+         * will be finished loading.
          */
 
         // Instantiate variables in 'describe' scope to hold
@@ -121,14 +126,17 @@ $(function() {
         });
 
         it('has changed its content', function(done) {
-            /* load the first feed and set the returned data to the firstFeed
-             * variable for readability
+            /* load the first feed and set an anonymous callback function to test
+             * the the returned data within so that it is not executed syncronously
+             * ensuring that the async data is loaded before being tested.
              */
-            loadFeed(0, done);
-            firstFeed = $('.feed').text();
+            loadFeed(0, function() {
+                firstFeed = $('.feed').text();
+                // test the two feeds agains each other, expecting data to change i.e. be different
+                expect(firstFeed).not.toEqual(secondFeed);
+                done();
+            });
 
-            // test the two feeds agains each other, expecting data to change i.e. be different
-            expect(firstFeed).not.toEqual(secondFeed);
         });
 
 
